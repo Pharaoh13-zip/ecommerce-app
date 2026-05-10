@@ -15,7 +15,7 @@ function Auth({ onLogin, onClose }) {
     setError('');
     setLoading(true);
     try {
-      const url = `http://localhost:5000/api/auth/${mode}`;
+      const url = `https://ecommerce-backend.onrender.com/api/auth/${mode}`;
       const payload = mode === 'signup'
         ? { name: form.name, email: form.email, password: form.password }
         : { email: form.email, password: form.password };
