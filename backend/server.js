@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'https://ecommerce-j77ug93ja-pharaoh13-zips-projects.vercel.app'
+  origin: '*'
 }));
 app.use(express.json());
 
