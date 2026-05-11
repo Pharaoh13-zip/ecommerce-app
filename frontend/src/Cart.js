@@ -21,7 +21,7 @@ function Cart({ cart, setCart, onClose, user, onAuthNeeded }) {
       return;
     }
     try {
-      const res = await axios.post('https://ecommerce-backend.onrender.com', { cart });
+      const res = await axios.post('https://ecommerce-backend-87zh.onrender.com', { cart });
       window.location.href = res.data.url;
     } catch (err) {
       console.log(err);

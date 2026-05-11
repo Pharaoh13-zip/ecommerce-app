@@ -16,7 +16,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get('https://ecommerce-backend.onrender.com')
+    axios.get('https://ecommerce-backend-87zh.onrender.com')
       .then(res => {
         setProducts(res.data);
         setLoading(false);
