@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-aapp.use(cors({
+app.use(cors({
   origin: 'https://ecommerce-j77ug93ja-pharaoh13-zips-projects.vercel.app'
 }));
 app.use(express.json());
