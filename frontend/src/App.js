@@ -55,7 +55,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>🛍️ My Store</h1>
+        <h1>🛍️ My Shop</h1>
         <div className="header-right">
           {user ? (
             <div className="user-info">
