@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+const API = 'https://ecommerce-backend-87zh.onrender.com';
+
 function Auth({ onLogin, onClose }) {
   const [mode, setMode] = useState('login');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
@@ -15,11 +17,11 @@ function Auth({ onLogin, onClose }) {
     setError('');
     setLoading(true);
     try {
-const url = `https://ecommerce-backend-87zh.onrender.com/api/auth/${mode}`;      const payload = mode === 'signup'
-        ? { name: form.name, email: form.email, password: form.password }
-        : { email: form.email, password: form.password };
-
-      const res = await axios.post(url, payload);
+      const res = await axios.post(`${API}/api/auth/${mode}`, 
+        mode === 'signup'
+          ? { name: form.name, email: form.email, password: form.password }
+          : { email: form.email, password: form.password }
+      );
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       onLogin(res.data.user);
@@ -36,37 +38,16 @@ const url = `https://ecommerce-backend-87zh.onrender.com/api/auth/${mode}`;     
           <h2>{mode === 'login' ? 'Log In' : 'Sign Up'}</h2>
           <button className="close-btn" onClick={onClose}>✕</button>
         </div>
-
         <div className="auth-form">
           {mode === 'signup' && (
-            <input
-              name="name"
-              placeholder="Your name"
-              value={form.name}
-              onChange={handleChange}
-            />
+            <input name="name" placeholder="Your name" value={form.name} onChange={handleChange} />
           )}
-          <input
-            name="email"
-            type="email"
-            placeholder="Email address"
-            value={form.email}
-            onChange={handleChange}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-          />
-
+          <input name="email" type="email" placeholder="Email address" value={form.email} onChange={handleChange} />
+          <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} />
           {error && <p className="auth-error">{error}</p>}
-
           <button className="checkout-btn" onClick={handleSubmit} disabled={loading}>
             {loading ? 'Please wait...' : mode === 'login' ? 'Log In' : 'Sign Up'}
           </button>
-
           <p className="auth-switch">
             {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
             <span onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}>
